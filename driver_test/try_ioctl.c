@@ -42,9 +42,7 @@ main (int argc, char *argv[])
 		perror ("ioctl");
 	}
 
-	printf ("Slot is %d\n", nslot);
-
-	if (ioctl (fd, HIOCCLEARSLOT, &slot) < 0)
+	if (ioctl (fd, HIOCCLEARSLOT, NULL) < 0)
 	{
 		perror ("ioctl");
 	}

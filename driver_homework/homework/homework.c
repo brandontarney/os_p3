@@ -84,7 +84,7 @@ static ssize_t homework_read(devminor_t UNUSED(minor), u64_t UNUSED(position),
     u32_t *ptr = slots + slot_in_use;
     int ret;
     //char *buf = HOMEWORK_MESSAGE;
-    if (size < 4)
+    if (size < 4 || size > 4)
     { 
             printf("(Driver) homework_read(): Read MUST be 4 bytes\n");
             return EINVAL;
@@ -109,7 +109,7 @@ static ssize_t homework_write(devminor_t minor, u64_t position, endpoint_t endpt
     u32_t *ptr = slots + slot_in_use;
 
     //char *buf = HOMEWORK_MESSAGE;
-    if (size < 4)
+    if (size < 4 || size > 4)
     { 
             printf("(Driver) homework_write(): Write MUST be 4 bytes\n");
             return EINVAL;
@@ -143,14 +143,8 @@ static int homework_ioctl(devminor_t minor, unsigned long request, endpoint_t en
                         return EXIT_SUCCESS;
                 case HIOCCLEARSLOT:
                         printf("(Driver) homework_ioctl() HIOCCLEARSLOT\n");
-                        /* Clear input slot (set to 0) */
-                        sys_safecopyfrom(endpt, grant, 0, (vir_bytes) &tmp_slot, integer_size);
-                        if (tmp_slot > 4)
-                        {
-                                printf("(Driver) homework_HIOCSLOT(): Slot must be 0-4\n");
-                                return EINVAL;
-                        }
-                        slots[tmp_slot] = 0;
+                        /* Clear current slot (set to 0) */
+                        slots[slot_in_use] = 0;
                         printf("(Driver) slot cleared(%d) value = %d\n", tmp_slot, slots[tmp_slot]);
                         return EXIT_SUCCESS;
                 case HIOCGETSLOT:

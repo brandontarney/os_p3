@@ -21,23 +21,14 @@ main (int argc, char *argv[])
 {
 	int fd;
 	int foo;
-	int slot = 2;
-
-	if (argc > 1)
-		slot = atoi (argv[1]);
-	if (slot < 0 || slot > 4)
-	{
-		printf ("Bad slot %d\n", slot);
-		exit (1);
-	}
 
 	fd = open (HMWRK_DEV, O_RDWR);
 	if (fd < 0)
 		perror ("open"), exit (-1);
 
-	printf ("CLearing slot %d\n", slot);
+	printf ("CLearing current slot");
 
-	if (ioctl (fd, HIOCCLEARSLOT, &slot) < 0)
+	if (ioctl (fd, HIOCCLEARSLOT, NULL) < 0)
 	{
 		perror ("ioctl");
 	}
