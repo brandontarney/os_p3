@@ -32,7 +32,7 @@ main (int argc, char *argv[])
 	if (fd < 0)
 		perror ("open"), exit (-1);
 
-    printf("Setting slot to %d", slot);
+    printf("Setting slot to %d\n", slot);
 
 	if (ioctl (fd, HIOCSLOT, &slot) < 0)
 	{
