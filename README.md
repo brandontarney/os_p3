@@ -14,11 +14,11 @@
 ## About the code
 1. **IDE:** VIM ftw
 1. **Important code:**
- 1. Proj dir: /root/os/os_p3/
- 1. driver_homework/homework/homework.c
- 2. Memory/swap.c & Memory/mem.c
+   1. Proj dir: /root/os/os_p3/
+   1. driver_homework/homework/homework.c
+   2. Memory/swap.c & Memory/mem.c
 1. **How-to run:**
- 1. Use executables in driver_test/
+  1. Use executables in driver_test/
 1. **Input:** N/A
 1. **Output:** printf statements (all printf statements in the driver are commented-out: feel free to uncomment them for proof of functionality)
 1. **Unit tests:** N/A
