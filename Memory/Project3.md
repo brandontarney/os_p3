@@ -15,4 +15,4 @@ No, Minix does not support swap areas. This can be seen by running my "swap" pro
 
 ## 1.C. Show where in the Minix source where the virtual memory mapping is performed, and explain. 
 
-It is performed in /usr/src/minix/servers/vm/. Specifically pagetable.c
+It is performed in /usr/src/minix/servers/vm/. Specifically pagetable.c handles the page table which maps virtual memory to jphysical memory. There are methods like "findhole(int pages)" which finds holes as described as physical memory not yet allocated which is available. "vm_allocpage" allocates a page for use by the VM. pt_writemap actually creates a page table or adds to an existing one. Even init does a lot of mapping virtual memory to physical memory.
